@@ -1,13 +1,13 @@
 package com.playtomic.tests.wallet.service.impl;
 
 
-import com.playtomic.tests.wallet.service.StripeAmountTooSmallException;
-import com.playtomic.tests.wallet.service.StripeServiceException;
-import com.playtomic.tests.wallet.service.StripeService;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+
+import com.playtomic.tests.wallet.service.exception.StripeServiceException;
+import com.playtomic.tests.wallet.service.stripe.StripeAmountTooSmallException;
+import com.playtomic.tests.wallet.service.stripe.StripeService;
 
 import java.math.BigDecimal;
 import java.net.URI;
