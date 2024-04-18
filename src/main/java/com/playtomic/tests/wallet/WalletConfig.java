@@ -11,7 +11,7 @@ public class WalletConfig {
 
     @Bean
     public WalletService walletService() {
-        return new WalletService(); // You may need to provide any necessary dependencies here
+        return new WalletService();
     }
 
     @Bean

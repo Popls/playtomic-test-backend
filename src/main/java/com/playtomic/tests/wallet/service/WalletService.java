@@ -2,12 +2,14 @@ package com.playtomic.tests.wallet.service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.playtomic.tests.wallet.model.Payment;
 import com.playtomic.tests.wallet.model.Wallet;
 import com.playtomic.tests.wallet.service.exception.StripeServiceException;
+import com.playtomic.tests.wallet.service.exception.WalletAlreadyExistsException;
 import com.playtomic.tests.wallet.service.exception.WalletInsufficientFoundsException;
 import com.playtomic.tests.wallet.service.exception.WalletNotFoundException;
 
@@ -32,7 +34,7 @@ public class WalletService {
     }
 
     public Wallet purchases(String walletId, BigDecimal amount) throws WalletNotFoundException {
-        Payment payment = new Payment(amount);
+        Payment payment = new Payment(UUID.randomUUID().toString(), amount);
         Wallet wallet = getWalletById(walletId);
         wallet.addPayment(payment);
         return walletRepository.save(wallet);
@@ -46,6 +48,19 @@ public class WalletService {
         }
         paymentService.refund(paymentId);
         return walletRepository.save(wallet);
+    }
+
+    public Wallet createWallet(Wallet wallet) throws WalletAlreadyExistsException{
+        try{
+            getWalletById(wallet.getId());
+            throw new WalletAlreadyExistsException(String.format("Wallet %s already exists", wallet.getId()));
+        }catch(WalletNotFoundException e){
+            return walletRepository.save(wallet);
+        }
+    }
+
+    public void deleteWallet(String walletId) {
+        walletRepository.deleteById(walletId);
     }
 
 }

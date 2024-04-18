@@ -10,6 +10,13 @@ import java.math.BigDecimal;
 
 import com.mongodb.lang.NonNull;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Wallet {
     
     @NonNull
@@ -18,17 +25,7 @@ public class Wallet {
     @NonNull
     private BigDecimal balance;
 
-    @NonNull
     private List<Payment> payments;
-
-    @JsonCreator
-    public Wallet(@JsonProperty(value = "id", required = true) String id,
-                  @JsonProperty(value = "balance", required = true) BigDecimal balance,
-                  @JsonProperty(value = "payments", required = true) List<Payment> payments) {
-        this.id = id;
-        this.balance = balance;
-        this.payments = payments;
-    }
 
     public String getId() {
         return id;
