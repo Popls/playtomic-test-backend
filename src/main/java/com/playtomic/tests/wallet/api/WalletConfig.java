@@ -1,9 +1,8 @@
-package com.playtomic.tests.wallet;
+package com.playtomic.tests.wallet.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.playtomic.tests.wallet.api.WalletController;
 import com.playtomic.tests.wallet.service.WalletService;
 
 @Configuration

@@ -12,6 +12,7 @@ import com.playtomic.tests.wallet.service.exception.StripeServiceException;
 import com.playtomic.tests.wallet.service.exception.WalletAlreadyExistsException;
 import com.playtomic.tests.wallet.service.exception.WalletInsufficientFoundsException;
 import com.playtomic.tests.wallet.service.exception.WalletNotFoundException;
+import com.playtomic.tests.wallet.service.repository.WalletRepository;
 
 public class WalletService {
 
